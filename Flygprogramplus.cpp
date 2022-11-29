@@ -286,9 +286,6 @@ void print_tickets (list<Flight *> flightList, list<Bookings *> bookingList)
             cout << "Sorry, an error occured and the file could not be found"<<endl;
         }
  
-       void cancel_flights 
-
-
 
         int main(int argc, **argv)
         {
