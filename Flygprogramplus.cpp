@@ -21,7 +21,7 @@ Contact: guardianbardess@gmail.com
 
 using namespace std;
 
-class Flight
+class Flight  /* class that implemets the flight info*/
 {
 private:
     int flightnr;       /* The flightnumber*/ 
@@ -73,7 +73,7 @@ public: /*Public acces specifier*/
     }
 };
 
-class Booking
+class Booking  /* Class implementing booking information*/
 {
     int bookingnr;      /* The booking number*/
     string datestr;     /*The departure date*/
@@ -213,7 +213,7 @@ public:
     }
 };
 
-void allocate_seat(list<Flight *> flightList)
+void allocate_seat(list<Flight *> flightList)  /*function that allocates seats to the different bookings*/
 {
 
     list<Flight *>::iterator it;
@@ -258,7 +258,7 @@ if (seat > (if-> getAllseats()* row)
  }
 };
 
-void create_tickets(list<Flight *> flightsList, list<Bookings *> bookingList)
+void print_tickets (list<Flight *> flightList, list<Bookings *> bookingList)
 {
 
     list<Bookings *>::iteartor it_bookings;
@@ -278,13 +278,17 @@ void create_tickets(list<Flight *> flightsList, list<Bookings *> bookingList)
                     << "DESTINATION:" << (*f) ->getdestination();
                     << "TIME" << (*f)->gettime();
         ticket_file << "PASSENGER:" << (*b)->getfirstname() << " " <<->getlastname();
-        ticket_file << "CLASS:" << (*b)->getseatclass() ticketfile << "ROW:" << row << "" << "SEAT:" << row << seat <<endl;
+        ticket_file << "CLASS:" << (*b)->getseatclass() ticketfile << "ROW:" << row << "" << "SEAT:" << row << seat <<endl;  /*prints information to the ticket file*/
         ticket_file <<.close();  /*Closes the file*/ 
         }
         else
         {
             cout << "Sorry, an error occured and the file could not be found"<<endl;
         }
+ 
+       void cancel_flights 
+
+
 
         int main(int argc, **argv)
         {
