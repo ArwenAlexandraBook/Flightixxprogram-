@@ -310,7 +310,8 @@ public:
             bookingList.insert(bookingList.begin(), b);
         }
     }
-} list<Booking *> getList() { return (bookingList); }
+    
+ list<Booking *> getList() { return (bookingList); }
 
 void showlist()
 {
