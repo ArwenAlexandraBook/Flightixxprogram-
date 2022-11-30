@@ -7,13 +7,20 @@ The program creates files with a ticket for each file and will be printed out in
 
 
 The flights.csv file contains:
+
+
+
 flightnumber,departure,destination,date,time,f-rows,b-rows,e-rows
 
 The bookings.csv file contains:
+
+
 bookingnumber,date,time,departure,destination,seatclass,firstname,surname
 
 
 All the printed tickets should contain the following information:
+
+
 
 BOOKING:{bookingnumber} 
 FLIGHT:{flight} DEPARTURE:{dep} DESTINATION: {dest} {date} {time}
