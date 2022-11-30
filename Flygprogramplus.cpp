@@ -252,7 +252,7 @@ public:
                 {
                     f->bookfseat(p);
                     *row = p/7+1;
-                    *seat p%7+1;
+                    *seat = p%7+1;
                     return (true);
                 }
             }
@@ -301,11 +301,11 @@ public:
         char destination[15]; /*The destination aiport*/
         char seatclass[15];   /* The seatingclass */
         char firstname[50];   /*Passangers firstname*/
-        string lastname[50];  /*Passangers lastname*/
+        char lastname[50];  /*Passangers lastname*/
 
         FILE *fp = fopen("bookings.csv", "r");
 
-        while (fscanf(fp, "%d,%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", &bookingnr, datestr, timestr, departure, destination, seatclass, firstname, lastname) == 8)
+        while (fscanf(fp, "%d,%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", &bookingnr, datestr, timestr, departure, destination, seatclass, firstname, lastname) == 8)
         {
             Booking *b = new Booking(bookingnr, datestr, timestr, departure, destination, seatclass, firstname, lastname);
             bookingList.insert(bookingList.begin(), b);
