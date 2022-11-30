@@ -48,13 +48,13 @@ public: /*Public access specifier*/
         this->time = time;
         this->nrfcseats = nrfcrows;
         this->fcflags = new int[nrfcrows *sizeof(int) * 7];
-        memset(this->fcflags, 0, nrfcrows *sizeof(int) * 7);
+        memset(this->fcflags, 0,nrfcrows *sizeof(int) * 7);
         this->nrbcseats = nrbcrows;
         this->bcflags = new int[nrbcrows *sizeof(int) * 7];
-        memset(this->bcflags, 0, nrbcrows *sizeof(int) * 7);
+        memset(this->bcflags, 0,nrbcrows *sizeof(int) * 7);
         this->nrecseats = nrecrows;
         this->ecflags = new int[nrecrows * sizeof(int) * 7];
-        memset(this->ecflags, 0, nrecrows * sizeof(int) * 7);
+        memset(this->ecflags, 0,nrecrows * sizeof(int) * 7);
     }
 
     /*getters for the class flight*/
@@ -80,7 +80,9 @@ public: /*Public access specifier*/
         return time;
     }
     int getnrfcseats() { return (this->nrfcseats); }
-    int getfcseats(int p) { return (this->fcflags[p]); }
+    int getnrbcseats() { return (this->nrbcseats); }
+    int getnrecseats() { return (this->nrecseats);  }
+    int getfseat(int p) { return (this->fcflags[p]); }
     void bookfseat(int p) { this->fcflags[p] = 1; }
 };
 
@@ -96,7 +98,7 @@ class Booking /* Class implementing booking information*/
     string seatclass;   /*Seatingclass*/
 
 public: /*public access specifier*/
-    Booking(int bookingnr, char *datestr, char *timestr, char *departure, char *destination, char *seatclass, char *firstname, char *lastname)
+    Booking (int bookingnr, char *datestr, char *timestr, char *departure, char *destination, char *seatclass, char *firstname, char *lastname)
     {
         this->bookingnr = bookingnr;
         this->departure = departure;
@@ -159,13 +161,13 @@ public:
         char date[15];
         char time[10];
 
-        FILE *fp fopen("flights.csv", "r");
+        FILE *fp = fopen("flights.csv", "r");
 
         while (fscanf(fp, "%d,%[^,],%[^,],%[^,],%[^,],%d,%d,%d\n", &flightnr, departure, destination, date, time, &fcseats, &ecseats, &bcseats) == 8)
-        {
+          {
             Flight *f = new Flight(flightnr, departure, destination, date, time, fcseats, bcseats, ecseats);
             flightList.insert(flightList.begin(), f);
-            return;
+          
         }
     }
     list<Flight *> getList() { return (flightList); }
@@ -186,7 +188,7 @@ public:
     bool startPrintJob(list<Flight *> flights, list<Booking *> bookings)
     {
         list<Flight *>::iterator fit;
-        list<Booking *> iterator bit;
+        list<Booking *>::iterator bit;
         for (bit = bookings.begin(); bit != bookings.end(); bit++)
         {
             /*Searches after flight for booking*/
@@ -202,7 +204,7 @@ public:
                     int row = 0;
                     int seat = 0;
 
-                    if (this->allocate_seat(*fit, (*bit)->getseatclass(), &row, &seat))
+                    if (this->allocate_seat(*fit,(*bit)->getseatclass(), &row, &seat))
                     {
                         print_ticket(*fit, *bit, row, seat);
                     }
@@ -218,9 +220,9 @@ public:
 
         if (inclass == "first")
         {
-            for (int p = 0; p < f->getnrfcseats(); p++)
+            for (int p=0; p < f->getnrfcseats(); p++)
             {
-                if (f->gefseat(p) == 0)
+                if (f->getfseat(p) == 0)
                 {
                     f->bookfseat(p); /* Marking a seat taken*/
                     *row = p / 7 + 1;
@@ -233,7 +235,7 @@ public:
         {
             for (int p = 0; p < f->getnrbcseats(); p++)
             {
-                if (f->getfseats(p) == 0)
+                if (f->getfseat(p) == 0)
                 {
                     f->bookfseat(p);
                     *row = p / 7 + 1;
@@ -249,8 +251,8 @@ public:
                 if (f->getfseat(p) == 0)
                 {
                     f->bookfseat(p);
-                    *row = p / 7 + 1;
-                    *seat p % 7 + 1;
+                    *row = p/7+1;
+                    *seat p%7+1;
                     return (true);
                 }
             }
@@ -262,18 +264,17 @@ public:
     {
 
         char filename[20];
-        sprintf(filename "ticket-%d.txt", b->getbookingnr());
+        sprintf(filename, "ticket-%d.txt", b->getbookingnr());
         ofstream ticket_file(filename); /*Creates a file*/
 
         if (ticket_file.is_open()) /*Opens the file*/
         {
-            ticket_file << "BOOKING:\n"
-                        << b->getbookingnr() << endl;
+            ticket_file << "BOOKING:\n" << b->getbookingnr() << endl;
             ticket_file << "FLIGHT:" << f->getflightnr();
             ticket_file << "DEPARTURE:" << f->getDeparture();
             ticket_file << "DESTINATION:" << f->getDestination();
             ticket_file << "TIME" << f->getTime();
-            ticket_file << "PASSENGER:" << b->getfirstname() << " " << b->getlastname();
+            ticket_file << "PASSENGER:" << b->getfirstname() << " " <<b->getlastname();
             ticket_file << "CLASS:" << b->getseatclass();
             ticket_file << "ROW:" << row << ""
                         << "SEAT:" << seat << endl; /*prints information to the ticket file*/
@@ -287,7 +288,7 @@ public:
 };
 class Bookingmanager
 {
-    list<Booking *> bookinglist;
+    list<Booking *> bookingList;
 
 public:
     Bookingmanager(char *filename)
@@ -325,11 +326,11 @@ void showlist()
 }
 };
 
-int main(int argc, **argv)
+int main(int argc, char **argv)
 {
     int result;
     Flightbooking flightbooking(argv[1]);
-    Bookingmanager bookingm(argv(2));
+    Bookingmanager bookingm(argv[2]);
     Printer printer;
     printer.startPrintJob(flightbooking.getList(), bookingm.getList());
     return 0;
