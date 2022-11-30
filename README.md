@@ -1,5 +1,6 @@
 
-Detta program sammanställer information från en flights.csv fil och bookings.csv fil och skapar biljetter som printas ut som .txt filer. Varje bokning blir en biljett. 
+This this program you use information from two files one flight.csv containing flightinformation and booking.csv that contains bookinginformation.
+The program matches the flights with the bookings and allocates a seat and marks it booked.
+The program creates files with a ticket for each file and will be printed out in .txt files. 
 
 
-./ticket f- flights.csv b- bookings.csv
