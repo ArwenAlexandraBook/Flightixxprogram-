@@ -4,3 +4,19 @@ The program matches the flights with the bookings and allocates a seat and marks
 The program creates files with a ticket for each file and will be printed out in .txt files. 
 
 
+
+
+The flights.csv file contains:
+flightnumber,departure,destination,date,time,f-rows,b-rows,e-rows
+
+The bookings.csv file contains:
+bookingnumber,date,time,departure,destination,seatclass,firstname,surname
+
+
+All the printed tickets should contain the following information:
+
+BOOKING:{bookingnumber} 
+FLIGHT:{flight} DEPARTURE:{dep} DESTINATION: {dest} {date} {time}
+PASSENGER {firstname} {surname}
+CLASS: {seatclass}
+ROW {row} SEAT {seatnumber}
