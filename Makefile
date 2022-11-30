@@ -1,4 +1,4 @@
-Flightprogram: Flightprogram.cpp 
+Flightprogram: Flygprogram.cpp 
        g++  Flightprogram.cpp -o Flightprogram
 
 Run: Flightprogram 
