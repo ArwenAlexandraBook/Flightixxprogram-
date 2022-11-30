@@ -38,7 +38,7 @@ private:
     int *ecflags;       /*Economyclass flags*/
     int nroseats;       /*Occupied seats on the flight */
 
-public: /*Public acces specifier*/
+public: /*Public access specifier*/
     Flight(int flightnr, string departure, string destination, string date, string time, int nrfcrows, int nrbcrows, int nrecrows)
     {
         this->flightnr = flightnr;
@@ -47,11 +47,11 @@ public: /*Public acces specifier*/
         this->date = date;
         this->time = time;
         this->nrfcseats = nrfcrows;
-        this->fcflags = new int[nrfcrows * sizeof(int) * 7];
-        memset(this->fcflags, 0, nrfcrows * sizeof(int) * 7);
+        this->fcflags = new int[nrfcrows *sizeof(int) * 7];
+        memset(this->fcflags, 0, nrfcrows *sizeof(int) * 7);
         this->nrbcseats = nrbcrows;
-        this->bcflags = new int[nrbcrows * sizeof(int) * 7];
-        memset(this->bcflags, 0, nrbcrows * sizeof(int) * 7);
+        this->bcflags = new int[nrbcrows *sizeof(int) * 7];
+        memset(this->bcflags, 0, nrbcrows *sizeof(int) * 7);
         this->nrecseats = nrecrows;
         this->ecflags = new int[nrecrows * sizeof(int) * 7];
         memset(this->ecflags, 0, nrecrows * sizeof(int) * 7);
@@ -96,7 +96,7 @@ class Booking /* Class implementing booking information*/
     string seatclass;   /*Seatingclass*/
 
 public: /*public access specifier*/
-    Booking(int bookingnr, char *datestr, char *timestr, char *departure, char *destination, char *seatclass, char *first, char *lastname)
+    Booking(int bookingnr, char *datestr, char *timestr, char *departure, char *destination, char *seatclass, char *firstname, char *lastname)
     {
         this->bookingnr = bookingnr;
         this->departure = departure;
@@ -322,8 +322,7 @@ void showlist()
     }
     return;
 }
-}
-;
+};
 
 int main(int argc, **argv)
 {
