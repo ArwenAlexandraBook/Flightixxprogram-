@@ -262,7 +262,7 @@ public:
     {
 
         char filename[20];
-        sprintf(filename "ticket-%d.txt", b->get_bookingnr());
+        sprintf(filename "ticket-%d.txt", b->getbookingnr());
         ofstream ticket_file(filename); /*Creates a file*/
 
         if (ticket_file.is_open()) /*Opens the file*/
@@ -316,7 +316,7 @@ void showlist()
 {
 
     list<Booking *>::iterator it;
-    for (it = bookingList.begin() it != bookingList.end(); it++)
+    for (it = bookingList.begin(); it != bookingList.end(); it++)
     {
         cout << (*it)->getbookingnr();
     }
